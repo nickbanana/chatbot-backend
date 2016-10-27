@@ -1,8 +1,8 @@
 [
-	{
+{
 		"domain": "吃",
 		"response": [
-			
+
 		],
 		"concepts": [
 			"吃","餓","好吃"
@@ -23,7 +23,7 @@
 {
 		"domain": "飲料",
 		"response": [
-			
+
 		],
 		"concepts": [
 			"喝","渴"
@@ -38,7 +38,7 @@
 {
 		"domain": "景點",
 		"response": [
-			
+
 		],
 		"concepts": [
 			"玩","好玩","逛","看","好看","去","走"
@@ -59,7 +59,7 @@
 {
 		"domain": "超商",
 		"response": [
-			
+
 		],
 		"concepts": [
 			"超商","零食","水","汽水"
@@ -70,7 +70,7 @@
 {
 		"domain": "電影",
 		"response": [
-			
+
 		],
 		"concepts": [
 			"電影"
@@ -82,7 +82,7 @@
 {
 		"domain": "電影院",
 		"response": [
-			
+
 		],
 		"concepts": [
 			"電影院","影城"
@@ -93,7 +93,7 @@
 {
 		"domain": "夜市",
 		"response": [
-			
+
 		],
 		"concepts": [
 			"夜市"
@@ -104,7 +104,7 @@
 {
 		"domain": "公園",
 		"response": [
-			
+
 		],
 		"concepts": [
 			"公園"
@@ -115,7 +115,7 @@
 {
 		"domain": "博物館",
 		"response": [
-			
+
 		],
 		"concepts": [
 			"博物館"
@@ -126,7 +126,7 @@
 {
 		"domain": "紀念館",
 		"response": [
-			
+
 		],
 		"concepts": [
 			"紀念館"
@@ -137,7 +137,7 @@
 {
 		"domain": "美術館",
 		"response": [
-			
+
 		],
 		"concepts": [
 			"美術館"
@@ -148,7 +148,7 @@
 {
 		"domain": "捷運站",
 		"response": [
-			
+
 		],
 		"concepts": [
 			"捷運站","捷運"
@@ -159,7 +159,7 @@
 {
 		"domain": "公車站",
 		"response": [
-			
+
 		],
 		"concepts": [
 			"公車站","公車"
@@ -170,7 +170,7 @@
 {
 		"domain": "火車站",
 		"response": [
-			
+
 		],
 		"concepts": [
 			"火車站","火車"
@@ -337,7 +337,7 @@
 			"火鍋"
 		],
 		"children": [
-			
+
 		]
 	},
 {
@@ -348,7 +348,7 @@
 			"速食"
 		],
 		"children": [
-			
+
 		]
 	},
 {
@@ -359,7 +359,7 @@
 			"西餐"
 		],
 		"children": [
-			
+
 		]
 	},
 {
@@ -370,7 +370,7 @@
 			"粥"
 		],
 		"children": [
-			
+
 		]
 	},
 {
@@ -381,7 +381,7 @@
 			"小吃"
 		],
 		"children": [
-			
+
 		]
 	},
 {
@@ -392,7 +392,7 @@
 			"美食"
 		],
 		"children": [
-			
+
 		]
 	},
 {
@@ -403,43 +403,43 @@
 			"冰"
 		],
 		"children": [
-			
+
 		]
 	},
 {
 		"domain": "茶",
-			
+
 		"response": [
 		],
 		"concepts": [
 			"茶","紅茶","綠茶","麥茶","冬瓜茶","奶茶","烏龍茶"
 		],
 		"children": [
-			
+
 		]
 	},
 {
 		"domain": "果汁",
-			
+
 		"response": [
 		],
 		"concepts": [
 			"果汁"
 		],
 		"children": [
-			
+
 		]
 	},
 {
 		"domain": "咖啡",
-			
+
 		"response": [
 		],
 		"concepts": [
 			"咖啡","拿鐵","卡布奇諾"
 		],
 		"children": [
-			
+
 		]
 	},
 {
@@ -450,7 +450,7 @@
 			"牛奶","喝牛奶","鮮奶","奶粉","奶"
 		],
 		"children": [
-			
+
 		]
 	}
 ]

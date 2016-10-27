@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
+import os
 
 import console
 import task_modules.module_switch as module_switch
-
-def main():
-    chatbot = Chatbot()
-    chatbot.waiting_loop()
 
 class Chatbot(object):
 
@@ -16,11 +13,16 @@ class Chatbot(object):
         self.speech_domain = ''      # The domain of speech.
         self.speech_matchee = ''     # The matchee term of speech.
         self.speech_path = None      # The classification tree traveling path of speech.
+        self.speech_seg = []
 
         self.root_domain = None      # The root domain of user's input.
         self.domain_similarity = 0.0 # The similarity between domain and speech.
 
+        cur_dir = os.getcwd()
+        os.chdir(os.path.dirname(__file__))
         self.extract_attr_log = open('log/extract_arrt.log','w',encoding='utf-8')
+        os.chdir(cur_dir)
+
         self.console = console.Console(model_path="model/ch-corpus-3sg.bin")
 
     def waiting_loop(self):
@@ -29,13 +31,21 @@ class Chatbot(object):
         while True:
 
             speech = input()
-            res = self.listen(speech)
+            res = self.listenForDomains(speech)
             print(res[0])
 
-    def listen(self, sentence, target=None):
+    def listen(self, sentence, target=None, apiKey=None):
 
         """
-        Listen user's input and send back a response.
+        """
+        self.listenForDomains(sentence,target,apiKey)
+        self.listenForQuestionAnswering(sentence)
+
+    def listenForDomains(self, sentence, target=None, apiKey=None):
+
+        """
+        Listen user's input. If this input match any pre-defined domain,
+        and then send back a response from that domain.
 
         Args:
             - sentence: User's input from frontend.
@@ -43,6 +53,7 @@ class Chatbot(object):
             a sentence or a given answer by pressing the bubble buttom.
             If it is come from a button's text, target is the attribute name our
             module want to confirm.
+            - apiKey  : This key is for recognizing a user.
 
         Return:
             - response : Based on the result of modules or a default answer.
@@ -54,15 +65,16 @@ class Chatbot(object):
         status   = None
         response = None
 
-        self.rule_match(sentence) # find the most similar domain with speech.
-        handler = self.get_task_handler()
+        inDomain = self.rule_match(sentence, threshold=0.4) # find the most similar domain with speech.
+        if inDomain:
+            handler = self.get_task_handler()
 
-        try:
-            status,response = handler.get_response(self.speech, self.speech_domain, target)
-        except AttributeError:
-            # It will happen when we call a module which have not implemented.
-            # Ref task_modules/module_switch.py and module_switch/task.py
-            print("Handler of '%s' have not implemented" % self.root_domain)
+            try:
+                status,response = handler.get_response(self.speech, self.speech_domain, target)
+            except AttributeError:
+                # It will happen when we call a module which have not implemented.
+                # For more detail, please refer task_modules/module_switch.py, task.py
+                print("Handler of '%s' have not implemented" % self.root_domain)
 
         if response is None:
             response = self.get_response()
@@ -75,17 +87,37 @@ class Chatbot(object):
             handler.debug(self.extract_attr_log)
             return [response,status,target,candiates]
 
-    def rule_match(self, speech):
+    def listenForQuestionAnswering(self, sentence, apiKey=None):
+
+        """
+        Listen user's input and return a response which is based on
+        our or cutsom knowledge base.(if apiKey has given.)
+        """
+        pass
+
+    def getLoggerData(self):
+        return [self.root_domain,
+                self.speech_domain,
+                console.jieba.cut(self.speech,cut_all=False)]
+
+    def rule_match(self, speech, threshold):
 
         """
         Set domain,path,similarity,root_domain based on the rule which has
-        hte best similarity with user's input,
+        the best similarity with user's input.
+
+        Return: a boolean value, to indicate that this match makes sense or not.
         """
 
         res,self.last_path = self.console.rule_match(speech, best_only=True)
         self.speech = speech
         self.domain_similarity,self.speech_domain,self.speech_matchee = res
         self._set_root_domain()
+
+        if self.domain_similarity < threshold:
+            return False
+        else:
+            return True
 
     def get_response(self, domain=None):
         """
@@ -126,5 +158,14 @@ class Chatbot(object):
 
         return handler
 
-if __name__ == '__main__':
-    main()
+    def getCustomDomainRules(self, key):
+        """
+        """
+        #TODO
+        return None
+
+    def getCustomQARules(self, key):
+        """
+        """
+        #TODO
+        return None

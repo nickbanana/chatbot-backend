@@ -18,8 +18,6 @@ class Rule(object):
         self.response = response
         self.children = children
 
-        self.log = open('log.txt','w',encoding='utf-8')
-
     def __str__(self):
         res = 'Domain:' + self.id_term
         if self.has_child():
@@ -83,7 +81,6 @@ class Rule(object):
                         max_sim = sim
                         matchee = word
                 except Exception as e:
-                    self.log.write(repr(e)+ ". Try to hard-match.")
                     if term == word:
                         max_sim = 1
                         matchee = word
@@ -186,7 +183,7 @@ class RuleBase(object):
                     self.load_rules(path + file_name, is_root=True)
                 else:
                     self.load_rules(path + file_name)
-                    
+
 
     def load_model(self,path):
         """
