@@ -163,10 +163,6 @@
         "children": [
             "購買生活用品",
             "購買家電",
-<<<<<<< HEAD:RuleMatcher/rule/rule.json
-            "購買飲料",
-=======
->>>>>>> 66b09ead7ee633f81aab1aa58eb0939b10503881:Chatbot/RuleMatcher/rule/rule.json
             "購買鞋子",
             "購買衣服",
             "購買數位產品"
