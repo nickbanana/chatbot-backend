@@ -37,7 +37,7 @@ class MedicalListener(Task):
         if self.doctor_mode:
             return self.doctor_target_attr,["會","不會"]
         else:
-            return None,None
+            return self.doctor_target_attr,None
 
     def debug(self,log=None):
 
@@ -60,7 +60,7 @@ class MedicalListener(Task):
         Args:
             - memory: 為先前的任務紀錄，儲存已知的症狀
         """
-        self.symptom_dic = json.load(memory)
+        self.symptom_dic = json.loads(memory)
 
     def get_suggest(self):
         return self.doctor_suggest
@@ -178,6 +178,8 @@ class MedicalListener(Task):
             return "胃痛"
         elif subject=="腹部" and description == "痛推理":
             return "腹痛"
+        elif subject=="腹部" and description == "不舒服推理":
+            return "腹脹"
         elif subject=="腹部" and description == "瀉推理":
             return "腹瀉"
         elif subject=="心臟" and description == "痛推理":
